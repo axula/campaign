@@ -1,0 +1,94 @@
+<div id="map-key" class="adventure-section">
+    <header>
+        <h2 id="section-name">Adventure</h2>
+        <a href="#" class="dropdown-toggle" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <h3>Views <span class="caret"></span></h3></a>
+        <ul class="dropdown-menu">
+            <li><a id="view-as-list">List View</a></li>
+            <li><a id="view-as-map">Map View</a></li>
+        </ul>
+    </header>
+    <nav class="adventure-content">
+        <h4>Assigned</h4>
+        <ul class="list-unstyled">
+            <li>None</li>
+        </ul>
+        <h4>Unassigned</h4>
+        <ul class="list-unstyled">
+            {% for p in data["plot_points"] %}
+                <li id="adventure-link-{{ p.id }}">
+                    <a data-id="{{ p.id }}" class="nav-title-link">
+                        {{ p.title }}
+                </a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+</div>
+
+<div id="map-map" class="adventure-section">
+    <iframe id="map-image" src="/plotpoint/map.html"></iframe>
+</div>
+
+<div id="map-sidebar" class="adventure-section adventure-body">
+    <header style="position: relative;">
+        <h2 id="adventure-body-title" class="editable" data-id={{ data['plot_points'][0].id }} >
+            {{ data["plot_points"][0].title }}
+        </h2>
+        <div id="body-options">
+            {% if data["plot_points"][0].bookmark %}
+                <a id="adventure-bookmark" class="adventure-options active">
+            {% else %}
+                <a id="adventure-bookmark" class="adventure-options">
+            {% endif %}
+                <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span></a>
+            {% if data["plot_points"][0].shortcut %}
+                <a id="adventure-favorite" class="adventure-options active">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true">
+            {% else %}
+                <a id="adventure-favorite" class="adventure-options">
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true">
+            {% endif %}
+                </span></a>
+            <a id="adventure-trash" class="adventure-options">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+            <a id="edit-toggle" class="adventure-options">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+        </div>
+        <h3><span class="plotpoint-date">03-03-1029</span>
+            <span class="plotpoint-tags glyphicon glyphicon-tags" aria-hidden="true"></span> 
+            <ul id="tag-list" class="list-inline">
+                {% for tag in data["plot_points"][0].tags %}
+                    <li><span class="plotpoint-tag saved-tag">{{ tag.name }}</span></li>
+                {% endfor %}
+            </ul>
+            <div id="pp-new-tag"><span contenteditable="false" class="plotpoint-tag tag-autocomplete" id="new-plotpoint-tag" placeholder="+"></span></div>
+        </h3>
+    </header>
+    <div id="adventure-text" class="adventure-content editable">
+        {{ data["plot_points"][0].body|safe }}
+    </div>
+</div>
+
+<script> 
+    $(document).ready(function() {
+        var key_height = $(window).height() - 130;
+        $('#map-key .adventure-content').height(key_height);
+        
+        var map_height = $(window).height() - 110;
+        $('#map-image .adventure-content').height(map_height);
+        
+        var sidebar_height = $(window).height() - 130;
+        $('#map-sidebar .adventure-content').height(sidebar_height);
+    });
+    
+    $(window).resize(function() {
+        var key_height = $(window).height() - 130;
+        $('#map-key .adventure-content').height(key_height);
+        
+        var map_height = $(window).height() - 110;
+        $('#map-image .adventure-content').height(map_height);
+        
+        var sidebar_height = $(window).height() - 130;
+        $('#map-sidebar .adventure-content').height(sidebar_height);
+    });
+</script>

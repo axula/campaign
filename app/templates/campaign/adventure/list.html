@@ -1,0 +1,140 @@
+﻿<div id="display-options" class="adventure-section">
+    <nav>
+        <ul id="display-list-top" class="list-unstyled">
+            <li><a id="link-home" class="img-circle">
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+            </a></li>
+            <br>
+            <li><a id="link-bookmark" class="img-circle">
+                <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+            </a></li>
+            <li><a id="link-shortcuts" class="img-circle">
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            </a></li>
+            <li><a id="adventure-tag-list" class="img-circle">
+                <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+            </a></li>
+        <br>
+            <li><a id="adventure-map-mode" class="img-circle">
+                <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+            </a></li>
+        </ul>
+        <ul id="display-list-bottom" class="list-unstyled">
+            <li><a id="link-trashbin" class="img-circle">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </a></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="adventure-nav adventure-section">
+    <header>
+        <div id="adventure-new">
+            <a id="new-plotpoint" type="button">
+                <span class="glyphicon glyphicon-plus adventure-edit" aria-hidden="true"></span></a>
+        </div>
+        <hgroup style="position: relative;">
+            <h2 id="section-name">Adventure</h2>
+            <a href="#" class="dropdown-toggle" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <h3>Views <span class="caret"></span></h3></a>
+            <ul class="dropdown-menu">
+                <li><a id="view-as-list">List View</a></li>
+                <li><a id="view-as-map">Map View</a></li>
+            </ul>
+        </hgroup>
+    </header>
+    <nav class="nav-list adventure-content">
+        <ul class="list-unstyled sortable">
+            {% for p in data["plot_points"] %}
+                <li id="adventure-link-{{ p.id }}">
+                    {% if loop.first %}
+                        <a class="adventure-link active" data-id="{{ p.id }}">
+                    {% else %}
+                        <a class="adventure-link" data-id="{{ p.id }}">
+                    {% endif %}
+                    <span class="nav-title-link">{{ p.title }}</span><br>
+                    <span class="nav-description">Short Description goes here...</span>
+                </a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+</div>
+
+<div class="adventure-body adventure-section">
+  <form method="post">
+    <header style="position: relative;">
+        <h2 id="adventure-body-title" class="editable" data-id={{ data['plot_points'][0].id }} >
+            {{ data["plot_points"][0].title }}
+        </h2>
+        <div id="body-options">
+            {% if data["plot_points"][0].bookmark %}
+                <a id="adventure-bookmark" class="adventure-options active">
+            {% else %}
+                <a id="adventure-bookmark" class="adventure-options">
+            {% endif %}
+                <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span></a>
+            {% if data["plot_points"][0].shortcut %}
+                <a id="adventure-favorite" class="adventure-options active">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true">
+            {% else %}
+                <a id="adventure-favorite" class="adventure-options">
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true">
+            {% endif %}
+                </span></a>
+            <a id="adventure-trash" class="adventure-options">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+            <a id="edit-toggle" class="adventure-options">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+        </div>
+        <h3><span class="plotpoint-date">03-03-1029</span>
+            <span class="plotpoint-tags glyphicon glyphicon-tags" aria-hidden="true"></span> 
+            <ul id="tag-list" class="list-inline">
+                {% for tag in data["plot_points"][0].tags %}
+                    <li><span class="plotpoint-tag saved-tag">{{ tag.name }}</span></li>
+                {% endfor %}
+            </ul>
+            <div id="pp-new-tag"><span contenteditable="false" class="plotpoint-tag tag-autocomplete" id="new-plotpoint-tag" placeholder="+"></span></div>
+        </h3>
+    </header>
+    <div id="adventure-text" class="adventure-content editable">
+        {{ data["plot_points"][0].body|safe }}
+    </div>
+  </form>
+</div>
+<div class="adventure-sidebar adventure-section">
+    <header>
+        <div id="encounter-new">
+            <a id="new-encounter" type="button">
+                <span class="glyphicon glyphicon-plus encounter-new" aria-hidden="true"></span></a>
+        </div>
+        <hgroup>
+            <h2>Encounter</h2>
+            <h3>Subtitle</h3>
+        </hgroup>
+    </header>
+    <aside class="adventure-content">
+        <article>
+            <h4>Lucretia <span class="pull-right">CR 3</span></h4>
+            <p>Female half-orc cleric of Desna 4</p>
+            <p><b>Senses </b>darkvision 60 ft.; Perception +11</p>
+            <p><b>Skills </b>Acrobatics -4 (+0 to jump), Diplomacy +8, Heal +7, Perception +11, Profession (fortune-teller) +7, Sense Motive +7, Survival +3 (+5 to avoid becoming lost when using this)</p>
+            <p><b>Languages </b>Common, Orc</p>
+        </article>
+        
+        <article>
+            <h4>Valdis Hammerforge <span class="pull-right">CR 1/2</span></h4>
+            <p>Elf abjurer 1</p>
+            <p><b>Senses </b>darkvision 60 ft.; Perception +3</p>
+            <p><b>Skills </b>Appraise +8, Knowledge (arcana) +8, Knowledge (dungeoneering) +8, Knowledge (history) +8, Knowledge (planes) +8, Linguistics +8, Perception +3, Spellcraft +8</p>
+            <p><b>Languages </b>Celestial, Common, Draconic, Elven, Sylvan, Thassilonian, Varisian</p>
+        </article>
+        
+        <article>
+            <h4>Wilgefortis <span class="pull-right">CR 1/2</span></h4>
+            <p>Dwarf druid 1</p>
+            <p><b>Senses </b>darkvision 60 ft.; Perception +7</p>
+            <p><b>Skills </b>Acrobatics -3 (-7 to jump), Appraise +0 (+2 to assess nonmagical metals or gemstones), Knowledge (nature) +6, Perception +7 (+9 to notice unusual stonework), Spellcraft +4, Survival +10;<b> Racial Modifiers </b>+2 Appraise to assess nonmagical metals or gemstones, +2 Perception to notice unusual stonework</p>
+            <p><b>Languages </b>Common, Druidic, Dwarven, Skald</p>
+        </article>
+    </aside>
+</div>

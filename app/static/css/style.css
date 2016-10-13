@@ -1,0 +1,518 @@
+html, body, .campaign-container {
+    height: 100%;
+}
+
+.campaign-container {
+    padding-top: 51px;
+    display: table;
+    width: 100%;
+}
+
+[contenteditable=true]:empty:before{
+  content: attr(placeholder);
+  display: block; /* For Firefox */
+}
+
+#overlay {
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: white;
+    opacity: 0.8;
+    filter: Alpha(opacity=80); /* IE8 and earlier */
+}
+
+#overlay-message {
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#overlay-close {
+    margin: 56px 30px 0 0;
+    text-align: right !important;
+    font-size: 48px;
+    font-weight: bold;
+}
+    
+#overlay-close a {
+    color: #a0a0a0;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+#overlay-close a:hover, #overlay-close a:active {
+    color: gray;
+}
+
+.fullpage-message {
+    text-align: center;
+}
+
+.fullpage-message h1 {
+    margin-top: 100px;
+}
+
+/* Display Options */
+
+#display-options {
+    width: 50px;
+    background-color: #046;
+    overflow-x: hidden;
+    z-index: 1001;
+    position: relative;
+}
+
+#display-list-top {
+    position: absolute;
+    top: 51px;
+    left: 8px;
+}
+
+#display-list-bottom {
+    position: absolute;
+    bottom: 20px;
+    left: 8px;
+}
+
+#display-options li {
+    /*margin-left: 8px;*/
+    text-align: center;
+    font-size: 20px;
+    width: 34px;
+    margin-top: 15px;
+}
+
+#display-options li a {
+    display: inline-block;
+    background-color: white;
+    height: 34px;
+    width: 34px;
+    padding-top: 4px;
+    cursor: pointer;
+    color: #A0A0A0;
+}
+    
+#display-options li a:link, #display-options li a:visited {
+    color: #A0A0A0;
+}
+
+#display-options li a:hover, #display-options li a:active {
+    color: white;
+    background-color: #3a83a7;
+}
+
+/* Tag Search */
+
+#search-by-tag {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: 50px;
+    width: 310px;
+    padding: 20px;
+    background-color: white;
+    border-right: 1px solid #ececec;
+}
+
+#search-by-tag h2 {
+    margin-top: 68px;
+    font-size: 20px !important;
+}
+
+#search-by-tag form {
+    border-bottom: 1px solid #ececec;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+#search-tag-list {
+    overflow-y: scroll;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#search-tag-list li {
+    margin-bottom: 5px;
+}
+
+#search-tag-list a {
+    color: #A0A0A0;
+    text-decoration: none;
+    padding: 2px 15px;
+}
+
+.tag-post-num {
+    color: #3a83a7;
+    margin-left: 10px;
+}
+
+#search-tag-list a:active, #search-tag-list a:hover {
+    background-color: #3a83a7;
+    color: white;
+    border: 1px solid #046;
+}
+
+#search-tag-list a:active .tag-post-num, #search-tag-list a:hover .tag-post-num {
+    color: white;
+}
+
+/* Adventure */
+
+.adventure-section {
+    height: 100%;
+    display: table-cell;
+    vertical-align: top;
+    padding-top: 0 !important;
+}
+
+.adventure-section header {
+    height: 59px !important;
+    overflow-y: hidden;
+    border-bottom: 1px solid #ececec;
+}
+    
+.adventure-content {
+    overflow-y: scroll;
+    clear: both;
+}
+
+.adventure-section header h2 {
+    margin: 8px 0 5px 0;
+    font-size: 20px !important;
+    white-space: nowrap;
+}
+
+.adventure-section header h3 {
+    margin: 0;
+    font-size: 14px;
+    color: #A0A0A0;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+/* Custom Right-Click Menu */
+
+.adventure-select-options {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid #CCC;
+    white-space: nowrap;
+    font-family: sans-serif;
+    background: #FFF;
+    color: #333;
+    border-radius: 5px;
+}
+
+.adventure-select-options li {
+    padding: 5px 30px;
+    cursor: pointer;
+}
+
+.adventure-select-options li:hover {
+    background-color: #DEF;
+}
+
+/* Adventure Navigation */
+
+.adventure-nav {
+    width: 300px;
+}
+
+.adventure-nav nav {
+    position: absolute;
+    top: 110px;
+    width: 300px;
+}
+
+.adventure-nav header {
+    overflow-y: visible !important;
+}
+
+.adventure-nav header hgroup, .adventure-sidebar header hgroup {
+    width: 250px;
+    display: inline;
+}
+
+.adventure-nav header h2, .adventure-nav header h3, 
+.adventure-sidebar header h2, .adventure-sidebar header h3 {
+    padding: 0 20px 0 10px;
+    width: 250px;
+    display: inline-block;
+}
+
+#adventure-new, #encounter-new {
+    float: right;
+    text-align: right;
+    margin-top: 18px;
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+#adventure-new a, #encounter-new a {
+    cursor: pointer;
+    color: #A0A0A0;
+}
+
+.adventure-nav .nav-list li {
+    border-bottom: 1px solid #ececec;
+}
+
+.adventure-nav .nav-list li a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+
+.adventure-nav .nav-list li a:link, .adventure-nav .nav-list li a:visited {
+    background-color: white;
+}
+
+.adventure-nav .nav-list li a:hover, .adventure-nav .nav-list li a:active {
+    background-color: #ececec;
+}
+
+.nav-list .active {
+    background-color: #3a83a7 !important;
+    color: white !important;
+}
+
+.nav-list .active .nav-description {
+    color: #d7e4ea;
+}
+
+.adventure-nav .nav-list li .nav-title-link {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.adventure-nav .nav-list li .nav-description {
+    font-size: 13px;
+}
+
+/* Adventure Sidebar */
+
+.adventure-sidebar {
+    width: 350px;
+}
+
+.adventure-sidebar .adventure-content {
+    padding: 20px;
+}
+
+.adventure-sidebar article {
+    margin-bottom: 20px;
+}
+
+.adventure-sidebar article h4 {
+    margin-top: 0;
+}
+
+/* Adventure Body */
+
+.adventure-body {
+    border-left: 1px solid #ececec;
+    border-right: 1px solid #ececec;
+}
+
+.adventure-body header h2 {
+    margin-left: 30px;
+    display: inline-block;
+    width: 80%;
+}
+
+.adventure-body header h3 {
+    padding-left: 30px;
+    overflow-y: visible !important;
+}
+
+#body-options {
+    text-align: right;
+    font-size: 20px;
+    position: absolute;
+    right: 15px;
+    top: 8px;
+}
+
+.adventure-options {
+    cursor: pointer;
+    margin-left: 12px;
+    color: #a0a0a0;
+}
+
+.adventure-options:link, .adventure-options:visited {
+    color: #a0a0a0;
+}
+
+.adventure-options:hover, .adventure-options:active {
+    color: #d0d0d0;
+}
+
+.plotpoint-tags {
+     margin: 0 10px;
+}
+
+.adventure-body header h3 ul li {
+    padding: 0 !important;
+}
+
+.plotpoint-tag {
+    padding: 1px 10px;
+    background-color: #ececec;
+    border: 1px solid #a0a0a0;
+    border-radius: 5px;
+    position: relative;
+    top: -1px;
+}
+
+#tag-list {
+    display: inline-block;
+    cursor: default;
+}
+
+#active-tag {
+    background-color: #3a83a7;
+    color: white;
+    border: 1px solid #046;
+}
+
+#pp-new-tag {
+    display: inline-block;
+    max-width: 200px;
+}
+
+#new-plotpoint-tag {
+    position: relative;
+    display: none;
+    width: auto;
+    height: 20px;
+    top: -2px !important;
+}
+
+.editable-yes, .adventure-options.active {
+    color: #3a83a7 !important;
+}
+
+.adventure-body .adventure-content {
+    padding: 20px 30px;
+}
+
+.adventure-body .adventure-content h1, 
+.adventure-body .adventure-content h2, 
+.adventure-body .adventure-content h3, 
+.adventure-body .adventure-content h4, 
+.adventure-body .adventure-content h5, 
+.adventure-body .adventure-content h6 {
+    color: #800;
+}
+
+.adventure-body .adventure-content h1 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.adventure-body .adventure-content h2 {
+    font-size: 18px;
+}
+
+.adventure-body .adventure-content h3 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.adventure-body .adventure-content h4 {
+    font-size: 16px;
+}
+
+.adventure-body .adventure-content h5 {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.adventure-body .adventure-content h6 {
+    font-size: 14px;
+}
+
+.adventure-body .adventure-content blockquote {
+    color: #0cf;
+    font-weight: normal;
+    font-style: italic;
+    font-size: 14px;
+}
+
+/* MAP VIEW */
+
+#map-key {
+    width: 300px;
+}
+
+#map-key header {
+    overflow-y: visible !important;
+    position: relative;
+}
+
+#map-key header h2, #map-key header h3, 
+#map-sidebar header h2, #map-sidebar header h3 {
+    padding: 0 20px 0 10px;
+    display: inline-block;
+}
+
+#map-key header h2, #map-key header h3 {
+    width: 250px;
+}
+
+#map-key nav {
+    padding: 10px 20px;
+}
+
+#map-key ul li {
+    
+}
+
+#map-key ul li a {
+    color: #333;
+}
+
+#map-map {
+    overflow-y: hidden;
+    border-left: 1px solid #ececec;
+    border-right: 1px solid #ececec;
+}
+
+#map-image {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    border: 0 !important;
+}
+
+#map-image img {
+    margin: 20px auto;
+    display: block;
+}
+
+#map-sidebar {
+    width: 450px;
+}
+
+#map-sidebar header h2 {
+    margin-left: 0 !important;
+}
+
+#map-sidebar .adventure-content {
+    padding: 10px 20px;
+}

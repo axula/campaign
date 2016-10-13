@@ -1,0 +1,97 @@
+<!--<img src="https://dl.dropboxusercontent.com/u/15296297/Furnace-Rooms---Briarstone-Asylum---Map.jpg">-->
+<style>
+    .draggable {
+        display: inline-block;
+    }
+    
+    .draggable img {
+        cursor: move;
+    }
+    
+    body {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 14px;
+        height: 100%;
+        overflow: hidden;
+        margin: 0;
+    }
+    
+    #options {
+        position: absolute;
+        right: 15px;
+        top: 20px;
+        z-index: 500;
+    }
+    
+    #options a {
+        background-color: white;
+        cursor: pointer;
+        padding: 10px 15px;
+        font-weight: bold;
+        color: #a0a0a0;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    #options a:hover, #options a:active {
+        color: #333;
+    }
+    
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<script src="/static/js/imageMapResizer.min.js"></script>
+<script>
+    $(function() {
+        $(".draggable").draggable({ 
+            drag: function(event, ui) {
+                if ( ui.position.top > 0 ) {
+                    ui.position.top = 0;
+                } 
+                if ( ui.position.left > 0 ) {
+                    ui.position.left = 0;
+                }
+                if ( ui.position.top < $('body').height() - $(".draggable").height() ) {
+                    ui.position.top = $('body').height() - $(".draggable").height();
+                }
+                if ( ui.position.left < $('body').width() - $(".draggable").width() ) {
+                    ui.position.left = $('body').width() - $(".draggable").width();
+                }
+            }
+        });
+    });
+</script>
+<nav id="options">
+    <a href="{{ url_for('edit_map') }}" target="_parent" id="edit-map">Edit</a>
+</nav>
+<div class="draggable">
+    <img id="area-map" src="{{ image }}" usemap="#image-map">
+    <map name="image-map">
+        <area shape="rect" coords="0,0,500,500" alt="Test">
+    </map>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('.draggable img').on('load', function() {
+            if ( $(this).height() > $(this).width() ) {
+                $(this).css('width', '100%');
+                $(this).css('height', 'auto');
+            } else {
+                $(this).css('height', '100%');
+                $(this).css('width', 'auto');
+            }
+        });
+        $('map').imageMapResize();
+    });
+    $(window).resize(function() {
+        var image = $('.draggable img');
+        if ( $(image).height() > $(image).width() ) {
+            $(image).css('width', '100%');
+            $(image).css('height', 'auto');
+        } else {
+            $(image).css('height', '100%');
+            $(image).css('width', 'auto');
+        }
+        $('map').imageMapResize();
+    });
+</script>
